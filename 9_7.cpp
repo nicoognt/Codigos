@@ -48,6 +48,6 @@ int main() {
 	terna_puntaje(competencia);
 	ganador_competencia(m_competencia,v_dni);
 	
-	return 1;
+	return 0;
 }
 
