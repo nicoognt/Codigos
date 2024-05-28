@@ -25,7 +25,7 @@ void maximo_minimo(int salario,int &max_sal,int &min_sal) {
 	}
 }
 float promedio(int total) {
-	return total / 20;
+	return total / 25;
 }
 
 int main() {
