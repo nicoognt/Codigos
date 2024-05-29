@@ -10,7 +10,7 @@ int buscar(vector<int> &nums) {
 	return nums.size();
 }
 
-void eliminar(vector<int> &num, int &pos) {
+void eliminar(vector<int> &num, int pos) {
 	for (size_t i=pos;i<num.size()-1;i++) {
 		num[i] = num[i+1];
 	}

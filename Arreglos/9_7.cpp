@@ -40,6 +40,7 @@ void num_dni(vector<int> &v_dni) {
 int main() {
 	int N,alumno,prueba,ganador;
 	float puntaje,puntaje_max;
+	cout<<"cuántos alumnos participan de la competencia?: ";
 	cin>>N;
 	vector<int> v_dni(N);
 	matrix<float> m_competencia(3,N);
