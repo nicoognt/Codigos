@@ -13,7 +13,7 @@ int busca_pos(const vector<string> &palabrillas,string &nuevo_nombre) {
 void inserta(vector<string> &palabras,int a,string &nuevo_nombre) {
 	palabras.resize(palabras.size()+1);
 	for (int i = palabras.size()-1;i>a;--i) {
-		palabras[i+1] = palabras[i];
+		palabras[i] = palabras[i-1];
 	}
 	palabras[a] = nuevo_nombre;
 }
