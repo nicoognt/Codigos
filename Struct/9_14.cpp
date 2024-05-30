@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 //a) Defina un struct para guardar notas de parciales de un alumno: apellido y
 //nombre, notas de dos parciales y sus respectivos recuperatorios (las instancias
@@ -10,10 +11,11 @@ using namespace std;
 //segundo. La función debe calcular la condición y la nota final (redondeando el
 //promedio) según las reglas de esta materia.
 //d) Escriba un programa cliente para probar la función.
+
 struct Alumno {
 	string nombre;
-	vector<float> notas_parcial(2);
-	vector<float> notas_recuperatorio(2);
+	vector<float> notas_parcial;
+	vector<float> notas_recuperatorio;
 };
 struct Cond_final {
 	string nombre;
@@ -24,21 +26,37 @@ float prom(float suma) {
 	return suma / 2;
 }
 
+float sum(Alumno xd) {
+	float suma;
+	if (xd.notas_parcial[0] > xd.notas_recuperatorio[0] and xd.notas_parcial[1] > xd.notas_recuperatorio[1]) {
+		suma = xd.notas_parcial[0] + xd.notas_parcial[1];
+	} else if (xd.notas_parcial[0] < xd.notas_recuperatorio[0] and xd.notas_parcial[1] < xd.notas_recuperatorio[1]) {
+		suma = xd.notas_recuperatorio[0] + xd.notas_recuperatorio[1];
+	} else if (xd.notas_parcial[0] > xd.notas_recuperatorio[0] and xd.notas_parcial[1] < xd.notas_recuperatorio[1]) {
+		suma = xd.notas_parcial[0] + xd.notas_recuperatorio[1];
+	} else {
+		suma = xd.notas_recuperatorio[0] + xd.notas_parcial[1];
+	}
+	return suma;
+}
+
 Alumno completar() {
 	Alumno x;
 	cout<<"Nombre: ";
 	getline(cin, x.nombre);
 	cout<<"Ingrese las dos notas de los parciales y luego, de los recuperatorios (si no asistió ingrese -1): ";
-	for(size_t i=0;i<x.notas_parcial.size();i++) { 
+	x.notas_parcial.resize(2);
+	x.notas_recuperatorio.resize(2);
+	for(size_t i=0;i<2;i++) { 
 		cin>>x.notas_parcial[i];
 	}
-	for(size_t i=0;i<x.notas_recuperatorio.size();i++) { 
-		cin>>x.notas_recuperatorio[i]
+	for(size_t i=0;i<2;i++) { 
+		cin>>x.notas_recuperatorio[i];
 	}
 	return x;
 }
 void condicion(const Alumno downlin) {
-	float suma = downlin.notas_parcial[0] + downlin.notas_parcial[1];
+	float suma = sum(downlin);
 	float promedio = prom(suma);
 	
 }
