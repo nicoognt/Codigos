@@ -27,7 +27,7 @@ float prom(float suma) {
 }
 
 float sum(Alumno xd) {
-	float suma;
+	float suma = 0;
 	if (xd.notas_parcial[0] > xd.notas_recuperatorio[0] and xd.notas_parcial[1] > xd.notas_recuperatorio[1]) {
 		suma = xd.notas_parcial[0] + xd.notas_parcial[1];
 	} else if (xd.notas_parcial[0] < xd.notas_recuperatorio[0] and xd.notas_parcial[1] < xd.notas_recuperatorio[1]) {
@@ -58,7 +58,20 @@ Alumno completar() {
 void condicion(const Alumno downlin) {
 	float suma = sum(downlin);
 	float promedio = prom(suma);
-	
+	Cond_final aux;
+	if (promedio >= 6) {
+		aux.nombre = downlin.nombre;
+		aux.condicion = "Promocionado";
+		aux.nota_final = promedio;
+	} else if (promedio >= 4) {
+		aux.nombre = downlin.nombre;
+		aux.condicion = "Regular";
+		aux.nota_final = -1;
+	} else {
+		aux.nombre = downlin.nombre;
+		aux.condicion = "Libre";
+		aux.nota_final = -1;
+	}
 }
 
 int main() {
@@ -66,9 +79,7 @@ int main() {
 	Alumno segundo = completar();
 	
 	condicion(primero);
-	mostrar(primero);
 	condicion(segundo);
-	mostrar(segundo);
 	return 0;
 }
 
