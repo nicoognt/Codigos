@@ -34,6 +34,7 @@ int main() {
  ficha_alumno n3 = leer_datos();
 
  meter_calif(n1);
+ vector<ficha_alumno> x(200);
 	return 0;
 }
 
