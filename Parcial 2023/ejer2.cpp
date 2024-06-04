@@ -11,22 +11,54 @@ using namespace std;
 
 struct Archivo {
 	string nombre;
-	int lineas_cod;
-	int cant_func;
+	int lineas_cod, cant_func;
+};
+struct Totales {
+	int tot_lineas;
+	int tot_funcs;
 };
 
-void llenar(vector<Archivo> &b) {
-	for(size_t i=0;i<b.size();i++) { 
-		cin>>b.nombre>>b.lineas_cod>>b.cant_func;
+pair<Archivo,Archivo> DosMayores(const vector<Archivo> &aux) {
+	Archivo may = { "", -1, 0}, seg ={ "", -1, 0};
+	for(size_t i=0;i<aux.size();i++) { 
+		if (aux[i].lineas_cod > may.lineas_cod) {
+			seg = may;
+			may = aux[i];
+		} else if (aux[i].lineas_cod > seg.lineas_cod) {
+			seg = aux[i];
+		};
 	}
+	return {may, seg};
+}
+
+pair<int,int> total(const vector<Archivo> &c) {
+	int tot_lineas = 0, tot_funcs = 0;
+	for (Archivo aux : c) {
+		tot_lineas += aux.lineas_cod;
+		tot_funcs += aux.cant_func;
+	}
+	return {tot_lineas, tot_funcs };
 }
 
 int main() {
 	int N;
 	cin>>N;
 	vector<Archivo> a(N);
-	llenar(a);
 	
+	for(size_t i=0;i<a.size();i++) { 
+		cin.ignore();
+		getline(cin,a[i].nombre);
+		cin>>a[i].lineas_cod;
+		cin>>a[i].cant_func;
+	}
+	
+	for(Archivo b : a) { 
+		cout << b.nombre << ": " << b.lineas_cod/b.cant_func;
+	}
+	
+	pair<Archivo,Archivo> May = DosMayores(a);
+	pair<int,int> tot = total(a);
+	cout << "La cantidad total de lineas es: " << tot.first << ", y la de funciones, " << tot.second << endl;
 	return 0;
 }
 
