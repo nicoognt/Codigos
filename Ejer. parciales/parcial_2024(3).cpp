@@ -15,7 +15,7 @@ vector<float> corregir(vector<float> &a) {
 		if (a[i]<=3.5 and a[i+1]>=0.3) {
 			a.resize(a.size()+1);
 			int n = i;
-			for (int j=a.size()-1;j<n;--j) {
+			for (int j=a.size()-2;j<n;--j) {
 				a[i+1] = a[i];
 			}
 			a[n] = promedio;
