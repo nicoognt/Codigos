@@ -14,11 +14,11 @@ pair<vector<float>,float> corregir(vector<float> &a) {
 		}
 	}
 	float promedio = contador/cont;
-	for (size_t i=0;i<a.size()-1;i++) {
-		if (a[i]<=3.5 and a[i+1]>=0.3) {
+	for (size_t i=2;i<a.size();i+=3) {
+		if (a[i]>0.3) {
 			a.resize(a.size()+1);
 			int n = i;
-			for (int j=a.size()-1;j<n;--j) {
+			for (int j=a.size()-2;j>=n;--j) {
 				a[i+1] = a[i];
 			}
 			a[n] = promedio;
