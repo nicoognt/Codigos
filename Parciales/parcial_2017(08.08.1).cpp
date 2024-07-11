@@ -37,6 +37,7 @@ int main() {
 		cin >> contrasena;
 		if (acceso[i].first==usuario and acceso[i].second==contrasena) {
 			cout << "Bienvenido al sistema sr/sra " << usuario;
+			break;
 		} else {
 			cout << "Incorrecto. Intente de nuevo." << endl;
 			cont++;
