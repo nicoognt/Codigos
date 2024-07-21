@@ -7,7 +7,6 @@ struct Atleta{
 	float tiempo;
 };
 
-
 Atleta buscar(const vector<Atleta> &v,int dni_n) {
 	Atleta aux;
 	for(size_t i=0;i<v.size();i++) { 
@@ -17,6 +16,7 @@ Atleta buscar(const vector<Atleta> &v,int dni_n) {
 	}
 	return aux;
 }
+
 int main() {
 	vector<Atleta> v(20);
 	int cod,aux=0;
