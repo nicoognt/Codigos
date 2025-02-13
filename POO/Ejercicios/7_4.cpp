@@ -17,30 +17,25 @@ private:
 	fstream bin;
 	vector<J> v;
 public:
-	ManejadorArchivo(string nom, vector<J> a) {
-		bin.open(nom,ios::binary|ios::in|ios::out|ios::ate);
+	ManejadorArchivo(string nom) {
+		bin.open(nom,ios::binary|ios::in|ios::ate);
 		if(!bin.is_open()) throw runtime_error("No se pudo abrir/crear el archivo");
-		bin.seekp(0);
+		int n = bin.tellg()/sizeof(J);
+		bin.seekg(0);
 		
-		for(size_t i=0;i<a.size();i++) { 
-			bin.write(reinterpret_cast<const char*>(&a[i]),sizeof(J));
+		for(size_t i=0;i<n;i++) {
+			J aux;
+			bin.write(reinterpret_cast<const char*>(&aux),sizeof(J));
+			v[i] = aux;
 		}
-		v = a;
 	}
 	~ManejadorArchivo() {
 		bin.close();
 	}
 	J ObtenerRegis(int pos){
-		bin.seekg(pos*sizeof(J));
-		
-		J aux;
-		bin.read(reinterpret_cast<char*>(&aux),sizeof(J));
-		
-		return aux;
+		return v[pos-1];
 	}
 	void ModificarRegis(int pos, J nuevo) {
-		bin.seekp(pos*sizeof(J));
-		bin.write(reinterpret_cast<const char*>(&nuevo),sizeof(J));
 		v[pos-1] = nuevo;
 	}
 	void Actualizar() {
