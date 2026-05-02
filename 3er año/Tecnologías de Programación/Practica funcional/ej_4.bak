@@ -1,0 +1,3 @@
+; consigna: extraer la x de las listas siguientes
+'( a b c . x)
+( cdr ( cdr ( cdr '( a b c . x))))
