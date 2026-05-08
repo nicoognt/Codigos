@@ -1,0 +1,10 @@
+(define a 5)
+(define b 12)
+(let ([c (/ a b)])
+  (+ (* 7 c) (* 3 c) (* 7 c))
+  )
+
+(define c 111)
+(let ([l (list a b c)])
+  (cons (car l) (cdr l))
+  )

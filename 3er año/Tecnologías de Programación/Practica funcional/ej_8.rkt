@@ -1,0 +1,6 @@
+(define area (lambda (num)
+               (if (< num 0)
+                   (display "error")
+                   (* num num pi)
+                   )))
+(area 0.67)
